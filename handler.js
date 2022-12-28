@@ -88,8 +88,8 @@ const getAllBooks = (request, responseHelper) => {
   if (finished !== undefined) {
     filteredBooks = filteredBooks.filter((book) => book.finished === !!Number(finished));
   }
-
-  const response = responseHelper.response({
+  
+  return {
     status: 'success',
     data: {
       books: filteredBooks.map((book) => ({
@@ -98,10 +98,7 @@ const getAllBooks = (request, responseHelper) => {
         publisher: book.publisher,
       })),
     },
-  });
-  response.code(200);
-
-  return response;
+  };
 };
 
 const getBookById = (request, responseHelper) => {
